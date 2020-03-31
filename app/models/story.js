@@ -7,5 +7,7 @@ export default Model.extend({
   description: DS.attr('string'),
   project: DS.belongsTo('project'),
   tags: DS.hasMany('tag'),
-  developer: DS.belongsTo('developer')
+  developer: DS.belongsTo('developer'),
+  tasks: DS.hasMany('task'),
+  active: DS.attr('boolean')
 });

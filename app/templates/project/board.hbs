@@ -1,0 +1,58 @@
+<div class="ui header">
+  <i class="icon calendar alternate"></i>
+  <div class="content">
+    Tableau de bord
+    <div class="sub header">Progress of the project stories</div>
+  </div>
+</div>
+
+<div class="ui segments">
+  <div class="ui green tertiary segment">
+    <p>with selected story : <strong> "STORY SELECTIONNEE"  </strong></p>
+  </div>
+  <div class="ui segment ">
+    <button class="ui button">
+      <i class="folder open icon"></i>
+      Open…
+    </button>
+    {{#ui-dropdown class="ui floating dropdown labeled icon button" onChange=(action (mut model.steps)) as |execute mapper|}}
+      <i class="arrow circle right icon"></i>
+      <span class="default-text">Move to step</span>
+      <div class="menu">
+        {{#each model.steps as |step|}}
+          <div class="item" data-value={{map-value mapper step}}>
+            <i class="step forward icon"></i>
+            {{step.title}}
+          </div>
+        {{/each}}
+      </div>
+    {{/ui-dropdown}}
+    <button class="ui red button" {{action "cancel"}}>
+      <i class="times icon"></i>
+      Remove
+    </button>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="three column row">
+    {{#each model.steps as |step| }}
+      <div class="column">
+        <div class="ui segments">
+          <div class="ui secondary segment">
+            <p><i class="step forward icon"></i>{{step.title}}</p>
+          </div>
+          <div class="ui segment">
+            {{#draggable-dropzone content=step dropped="moveToStep" class="column"}}
+              {{#each step.stories as |story|}}
+                {{#draggable-item content=story onClick="activate" class="ui segment" activeClass="green inverted"}}
+                {{/draggable-item}}
+              {{/each}}
+            {{/draggable-dropzone}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{outlet}}

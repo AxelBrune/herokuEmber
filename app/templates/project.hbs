@@ -13,6 +13,14 @@
     <i class="icon plus"></i>
     Ajouter une story au projet…
   </LinkTo>
+   <LinkTo class="ui button teal" @route="project.board" @model={{model.project.id}}>
+    <i class="icon calendar alternate"></i>
+    Dashoard
+  </LinkTo>
+  <LinkTo class="ui button" @route="projects">
+    <i class="icon arrow circle left"></i>
+    Back to projects
+  </LinkTo>
   <table class="ui selectable single line table">
     <tbody>
       {{#each model.stories as |story|}}
@@ -36,9 +44,9 @@
               <a class="ui basic right pointing label">
                 {{story.developer.identity}}
               </a>
-              <LinkTo class="ui button" @route="developers.edit" @model={{story.developer}}>
-                <i class="user icon"></i>
-                Modifier…
+              <LinkTo class="ui button" @route="story.edit" @model={{story.id}}>
+                <i class="folder open icon"></i>
+                Ouvrir…
               </LinkTo>
             </div>
           </td>

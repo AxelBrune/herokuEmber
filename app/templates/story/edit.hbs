@@ -2,9 +2,9 @@
   <i class="file icon"></i>
   <div class="content">
     <div class="header">
-      {{model.project.name}}
+      {{model.story.project.name}}
     </div>
-    <p>Ajout d'une story dans le projet</p>
+    <p>Modification d'une story existante</p>
   </div>
 </div>
 <form class="ui form" method="POST">
@@ -17,7 +17,7 @@
     <Textarea name="description" placeholder="Descriptif de la story" @value={{model.story.description}}/>
   </div>
   <div class="field">
-    {{#ui-dropdown class="selection" onChange=(action (mut model.story.developer)) as |execute mapper|}}
+    {{#ui-dropdown class="selection" selected=model.story.developer onChange=(action (mut model.story.developer)) as |execute mapper|}}
       <div class="default text">Développeur</div>
       <i class="dropdown icon"></i>
       <div class="menu">
@@ -36,7 +36,7 @@
         <div class="default text">Étiquettes</div>
         <div class="menu">
           {{#each model.tags as |tag|}}
-            <div data-value="{{map-value mapper tag}}" class="item">
+            <div data-value={{map-value mapper tag}} class="item">
               <i class="ui {{tag.color}} empty circular label"></i>
               {{tag.title}}
             </div>
@@ -58,12 +58,12 @@
             {{/each}}
           </div>
         {{/ui-dropdown}}
-        <button class="ui button" {{action "saveTag" model.tag}}>Créer une étiquette</button>
+        <button class="ui button" {{action "saveTag" model.tag}}>Nouvelle étiquette</button>
       </div>
     </div>
   </div>
   <div class="ui segment">
-    <button class="ui labeled green icon button" {{action "saveStory" model.story model.project}}>
+    <button class="ui labeled green icon button" {{action "saveStory" model.story}}>
       <i class="check icon"></i>
       Enregistrer
     </button>
