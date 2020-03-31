@@ -1,0 +1,26 @@
+<div class="ui icon message">
+  <i class="table icon"></i>
+  <div class="content">
+    <div class="header">
+      models\Developer
+    </div>
+    <p>Création d'un nouvel objet.</p>
+  </div>
+</div>
+<form class="ui form" method="POST">
+  <div class="field">
+    <label>Identité</label>
+    <Input type="text" name="identity" placeholder="Prénom NOM" @value={{model.identity}}/>
+  </div>
+  <div class="ui segment">
+    <button class="ui labeled green icon button" {{action "save" model}}>
+      <i class="check icon"></i>
+      Valider
+    </button>
+    <button class="ui labeled icon button red" {{action "cancel"}}>
+      <i class="times circle outline icon"></i>
+      Annuler
+    </button>
+  </div>
+</form>
+{{outlet}}

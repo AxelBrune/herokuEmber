@@ -1,0 +1,62 @@
+<LinkTo @route="developers">
+  <h1 class="ui header">
+    <i class="table icon"></i>
+    <span class="content">
+      models/Project
+      <span class="sub header">Data administration</span>
+    </span>
+  </h1>
+</LinkTo>
+<div class="ui segment">
+  <table class="ui inverted grey table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Descriptif</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |project|}}
+        <tr>
+          <td>{{project.name}}</td>
+          <td>{{project.description}}</td>
+          <td>{{moment-format project.startDate "MM-DD-YYYY"}}</td>
+          <td>{{moment-format project.dueDate "MM-DD-YYYY"}}</td>
+          <td class="right aligned">
+            <LinkTo class="circular ui basic icon button yellow" title="Visualiser" @route="project" @model={{project.id}}>
+              <i class="icon eye"></i>
+            </LinkTo>
+            <LinkTo class="circular ui basic icon button orange" title="Modifier" @route="projects.edit" @model={{project.id}}>
+              <i class="icon edit"></i>
+            </LinkTo>
+            <LinkTo class="circular ui inverted red icon button" title="Supprimer" @route="projects.delete"
+                    @model={{project}}>
+              <i class="icon times"></i>
+            </LinkTo>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="center aligned">Il n'y a pas de projets réalisés pour le moment</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th colspan="4">
+        <div class="ui right floated">
+          <LinkTo @route="projects.new" class="ui purple button">
+            <i class="icon plus"></i>
+            Ajouter un nouveau projet
+          </LinkTo>
+        </div>
+      </th>
+    </tr>
+  </tfoot>
+  </table>
+</div>
+{{outlet}}

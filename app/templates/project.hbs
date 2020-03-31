@@ -1,0 +1,54 @@
+<LinkTo @route="project" @model={{modeL.project.id}}>
+  <h1 class="ui header">
+    <i class="folder open icon"></i>
+    <span class="content">
+      {{model.project.name}}
+      <span class="sub header">{{model.project.description}}</span>
+    </span>
+  </h1>
+</LinkTo>
+<div class="ui segment">
+  <h2>Stories</h2>
+  <LinkTo class="ui button" @route="story.new" @model={{model.project.id}}>
+    <i class="icon plus"></i>
+    Ajouter une story au projet…
+  </LinkTo>
+  <table class="ui selectable single line table">
+    <tbody>
+      {{#each model.stories as |story|}}
+        <tr>
+          <td>
+            <h4 class="ui header">
+              <i class="file icon"></i>
+              <div class="content">
+                {{story.code}}
+                <div class="sub header">
+                  {{story.description}}
+                  {{#each story.tags as |tag|}}
+                    <div class="ui {{tag.color}} label">{{tag.title}}</div>
+                  {{/each}}
+                </div>
+              </div>
+            </h4>
+          </td>
+          <td class="right aligned">
+            <div class="ui left labeled button" tabindex="0">
+              <a class="ui basic right pointing label">
+                {{story.developer.identity}}
+              </a>
+              <LinkTo class="ui button" @route="developers.edit" @model={{story.developer}}>
+                <i class="user icon"></i>
+                Modifier…
+              </LinkTo>
+            </div>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="2" class="center aligned">Aucune story</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{outlet}}

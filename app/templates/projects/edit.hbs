@@ -1,0 +1,58 @@
+<div class="ui icon message">
+  <i class="table icon"></i>
+  <div class="content">
+    <div class="header">
+      models\Project
+    </div>
+    <p>Modifier un projet existant.</p>
+  </div>
+</div>
+<form class="ui form" method="POST">
+  <div class="field">
+    <label>Nom</label>
+    <Input type="text" name="name" placeholder="Nom du projet" @value={{model.projet.name}}
+           value={{model.projet.name}}/>
+  </div>
+  <div class="field">
+    <label>Descriptif</label>
+    <Textarea name="description" placeholder="Descriptif du projet" @value={{model.projet.description}}
+              value={{model.projet.description}}/>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Date de début</label>
+      <Input type="date" name="startDate" placeholder="JJ/MM/AAAA" @value={{model.projet.startDate}}
+             value={{moment-format
+              model.projet.startDate "YYYY-MM-DD"}}/>
+    </div>
+    <div class="field">
+      <label>Date de fin</label>
+      <Input type="date" name="dueDate" placeholder="JJ/MM/AAAA" @value={{model.projet.dueDate}} value={{moment-format
+              model.projet.dueDate "YYYY-MM-DD"}}/>
+    </div>
+  </div>
+  <div class="field">
+    {{#ui-dropdown class="selection" onChange=(action (mut model.projet.owner)) as |execute mapper|}}
+      <div class="default text">{{model.projet.owner.identity}}</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        {{#each model.devs as |developer|}}
+          <div data-value={{map-value mapper developer}} class="item">
+            {{developer.identity}}
+          </div>
+        {{/each}}
+      </div>
+    {{/ui-dropdown}}
+  </div>
+  <div class="ui segment">
+    <button class="ui labeled green icon button" {{action "edit" model.projet}}>
+      <i class="check icon"></i>
+      Valider
+    </button>
+    <button class="ui labeled icon button red" {{action "cancel"}}>
+      <i class="times circle outline icon"></i>
+      Annuler
+    </button>
+  </div>
+</form>
+{{outlet}}

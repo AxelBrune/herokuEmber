@@ -1,0 +1,17 @@
+<div class="ui icon message">
+  <i class="question circle icon"></i>
+  <div class="content">
+    <p>Confirmer la suppression de {{model.name}} ?</p>
+  </div>
+  <form class="ui form" method="POST">
+    <button class="ui labeled green icon button" {{action "delete" model}}>
+      <i class="check icon"></i>
+      Confirmer
+    </button>
+    <button class="ui labeled icon button red" {{action "cancel"}}>
+      <i class="times circle outline icon"></i>
+      Annuler
+    </button>
+  </form>
+</div>
+{{outlet}}

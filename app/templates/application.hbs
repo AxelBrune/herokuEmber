@@ -1,0 +1,14 @@
+<div class="ui container">
+  <div class="ui secondary  menu">
+    <a class="item">
+      Accueil
+    </a>
+    <LinkTo class="item" @route="projects">
+      Projets
+    </LinkTo>
+    <LinkTo class="item" @route="developers">
+      Développeurs
+    </LinkTo>
+  </div>
+  {{outlet}}
+</div>
