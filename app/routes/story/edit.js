@@ -19,6 +19,9 @@ export default Route.extend(
       },
       saveTag: function (tag) {
         this.get('store').createRecord('tag', tag).save();
+      },
+      cancel: function(){
+        this.transitionTo('project');
       }
     }
   }
