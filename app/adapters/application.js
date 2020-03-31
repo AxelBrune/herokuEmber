@@ -1,5 +1,3 @@
-import Adapter from 'ember-local-storage/adapters/local';
- 
-export default Adapter.extend({
-  modelNamespace: 'contact-app'
-});
+// app/adapters/application.js
+export { default } from 'ember-local-storage/adapters/local';
+// or export { default } from 'ember-local-storage/adapters/session';
